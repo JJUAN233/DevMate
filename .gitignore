@@ -1,0 +1,60 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env (uv)
+.venv/
+.python-version
+
+# =========================
+# Config (敏感信息)
+# =========================
+.env
+.env.*
+config.toml
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Ruff / Lint / Test
+# =========================
+.ruff_cache/
+.pytest_cache/
+
+# =========================
+# Vector DB / RAG
+# =========================
+chroma/
+*.db
+*.sqlite3
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Optional Frontend（如果你以后加）
+# =========================
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+
+hiking-trails

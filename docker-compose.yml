@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  mcp_server:
+    build: .
+    command: ["python", "-m", "devmate.search_server"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.skills:/app/.skills
+      - ./chroma_db:/app/chroma_db
+      - ./config.toml:/app/config.toml
+
+  agent:
+    build: .
+    command: ["python", "main.py"]
+    depends_on:
+      - mcp_server
+    stdin_open: true
+    tty: true
+    environment:
+      - MCP_SERVER_HOST=mcp_server
+    volumes:
+      - ./.skills:/app/.skills
+      - ./chroma_db:/app/chroma_db
+      - ./config.toml:/app/config.toml
+      - ./test_output:/app/test_output
