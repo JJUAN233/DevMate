@@ -1,11 +1,11 @@
-version: "3.9"
-
 services:
   mcp_server:
     build: .
     command: ["python", "-m", "devmate.search_server"]
     ports:
       - "8000:8000"
+    environment:
+      - PYTHONPATH=/app/src
     volumes:
       - ./.skills:/app/.skills
       - ./chroma_db:/app/chroma_db
@@ -20,6 +20,7 @@ services:
     tty: true
     environment:
       - MCP_SERVER_HOST=mcp_server
+      - PYTHONPATH=/app/src
     volumes:
       - ./.skills:/app/.skills
       - ./chroma_db:/app/chroma_db

@@ -1,0 +1,8 @@
+.venv
+.git
+.ruff_cache
+__pycache__
+*.png
+chroma_db
+.skills
+test_output

@@ -1,20 +1,29 @@
 from pathlib import Path
 import chromadb
-from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
+from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 from .config import get_config
 from .logger import get_logger
 
 logger = get_logger(__name__)
 config = get_config()
+model_cfg = config.get("model", {})
 vector_dir = config.get("vectorstore", {}).get("persist_directory", "./chroma_db")
 
 
 def _get_collection():
     """Retrieve or create the ChromaDB collection for local docs."""
     client = chromadb.PersistentClient(path=vector_dir)
+    
+    # Force use of SiliconFlow Embedding API
+    embedding_fn = OpenAIEmbeddingFunction(
+        api_key=model_cfg.get("api_key", ""),
+        api_base=model_cfg.get("ai_base_url", "https://api.siliconflow.cn/v1"),
+        model_name=model_cfg.get("embedding_model_name", "BAAI/bge-large-zh-v1.5")
+    )
+    
     return client.get_or_create_collection(
-        name="docs", embedding_function=DefaultEmbeddingFunction()
+        name="docs", embedding_function=embedding_fn
     )
 
 

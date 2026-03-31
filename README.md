@@ -66,6 +66,9 @@ persist_directory = "./chroma_db"
 
 ```bash
 docker compose up --build
+
+docker attach devmate-agent-1
+
 ```
 *提示：Docker 环境下会自动挂载当前环境的 `config.toml`、模型库目录等核心持久化数据。*
 

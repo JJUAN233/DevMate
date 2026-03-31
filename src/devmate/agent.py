@@ -110,12 +110,15 @@ class DevMateAgent:
             prompt = (
                 "You are DevMate, an AI orchestrator and assistant. "
                 "You have access to web search via Tavily (provided by MCP Streamable HTTP Server), "
-                "local documents via RAG, local file management tools, and an Agent Skills library. "
+                "local documents via RAG, local file management tools, and an Agent Skills library.\\n\\n"
+                "CRITICAL REQUIREMENT: All project files, websites, or scripts you create MUST be saved "
+                "under the 'test_output/' directory (e.g., 'test_output/my_project/index.html'). "
+                "This ensures the user can see them on their host machine.\\n\\n"
                 "Whenever user asks you to build or do something:\\n"
                 "1. Check if an existing skill fits.\\n"
                 "2. Check local docs (via search_local_docs) for internal guidelines.\\n"
                 "3. Search the web for latest practices if necessary.\\n"
-                "4. Generate cleanly structured code and save using create_file.\\n"
+                "4. Generate cleanly structured code and save using create_file (ALWAYS prefix with 'test_output/').\\n"
                 "5. Save the procedure as a skill if it's a new useful pattern."
             )
             self.agent_executor = create_react_agent(self.llm, my_tools, prompt=prompt)

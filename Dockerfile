@@ -1,16 +1,16 @@
 FROM python:3.13-slim
 
-RUN apt-get update && apt-get install -y curl && \\
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.local/bin:$PATH"
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
-COPY pyproject.toml uv.lock* ./
+COPY pyproject.toml uv.lock* README.md ./
 
-RUN uv venv /app/.venv && uv sync --no-dev
+RUN uv sync --frozen --no-install-project --no-dev
 ENV PATH="/app/.venv/bin:$PATH"
 
 COPY . .
+ENV PYTHONPATH="/app/src"
 
 # The target commands vary based on compose service
 CMD ["python", "main.py"]
