@@ -56,8 +56,6 @@ persist_directory = "./chroma_db"
    ```
 2. 启动 DevMate 主控 CLI 终端：
    ```bash
-   uv run python -m src.search_server
-
    uv run python main.py
    ```
    *(启动后，系统将自动加载并摄入 `docs/` 下的指南和文档知识，进入交互环境并等待输入。)*
@@ -79,7 +77,6 @@ docker compose up --build
 ├── .skills/                   # Agent 技能文件保存目录
 ├── chroma_db/                 # 本地向量数据库持久化目录
 ├── docs/                      # RAG 本地知识文档和开发资料存放处
-│   ├── assets/                # README 和相关文档的静态资源 (如配图)
 │   └── internal_fastapi_guidelines.md
 ├── src/
 │   └── devmate/               # DevMate 系统基础包代码

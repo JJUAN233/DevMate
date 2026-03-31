@@ -49,7 +49,7 @@ dist/
 Thumbs.db
 
 # =========================
-# Optional Frontend（如果你以后加）
+# Optional Frontend
 # =========================
 node_modules/
 .next/
@@ -58,3 +58,4 @@ out/
 *.tsbuildinfo
 
 hiking-trails
+chroma_db
