@@ -50,11 +50,14 @@ async def run_cli():
         while True:
             try:
                 user_input = await asyncio.to_thread(sys.stdin.readline)
-                if not user_input: break
+                if not user_input:
+                    break
                 
                 query = user_input.strip()
-                if query.lower() in ["exit", "quit", "q"]: break
-                if not query: continue
+                if query.lower() in ["exit", "quit", "q"]:
+                    break
+                if not query:
+                    continue
 
                 # Call the agent's chat method
                 response = await agent.chat(query)

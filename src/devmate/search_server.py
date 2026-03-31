@@ -1,7 +1,4 @@
-from fastapi import FastAPI
 from mcp.server.fastmcp import FastMCP
-import uvicorn
-from contextlib import asynccontextmanager
 
 from .config import get_config
 from .logger import get_logger
