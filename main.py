@@ -59,7 +59,6 @@ async def run_cli():
                 if not query:
                     continue
 
-                # Call the agent's chat method
                 response = await agent.chat(query)
                 logger.info(f"Agent Response: {response}")
             except EOFError:

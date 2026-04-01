@@ -65,7 +65,11 @@ class DevMateAgent:
         model_config = self.config.get("model", {})
         base_url = model_config.get("ai_base_url")
         api_key = model_config.get("api_key")
-        model_name = model_config.get("model_name", "gpt-4o")
+        model_name = model_config.get("model_name")
+
+        if not all([base_url, api_key, model_name]):
+            logger.error("LLM configuration missing in config.toml (api_key, ai_base_url, or model_name).")
+            raise ValueError("Incomplete LLM configuration.")
 
         logger.info("Initializing LLM %s via ChatOpenAI", model_name)
         # We allow None values to be handled by ChatOpenAI default env vars if config is empty

@@ -31,9 +31,7 @@ config.toml
 # =========================
 # Vector DB / RAG
 # =========================
-chroma/
-*.db
-*.sqlite3
+chroma_db/
 
 # =========================
 # Build / Distribution
@@ -57,6 +55,6 @@ out/
 .vercel/
 *.tsbuildinfo
 
-hiking-trails
-chroma_db
 .skills/
+test_output/
+.dockerignore
